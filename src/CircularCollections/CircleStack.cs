@@ -2,7 +2,7 @@
 
 namespace CircularCollections
 {
-    public class Class1
+    public class CircleStack<T> : ICircleStack<T>
     {
     }
 }
