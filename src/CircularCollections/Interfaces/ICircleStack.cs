@@ -6,7 +6,9 @@ namespace CircularCollections
 {
     public interface ICircleStack<T> : ICircleContainer<T>
     {
-        void Push(T node);
         internal T[] _data { get; set; }
+
+        void Push(T node);
+        T Pop();
     }
 }

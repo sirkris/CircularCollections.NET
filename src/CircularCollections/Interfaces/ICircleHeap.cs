@@ -10,6 +10,7 @@ namespace CircularCollections
 
         ICircleHeap<T> Merge(ICircleHeap<T> heapToMerge);
         void Push(T node, int index);
+        T Pop();
         void Reset();
     }
 }

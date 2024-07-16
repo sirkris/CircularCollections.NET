@@ -6,7 +6,9 @@ namespace CircularCollections
 {
     public interface ICircleQueue<T> : ICircleContainer<T>
     {
-        void Enqueue(T node);
         internal T[] _data { get; set; }
+
+        void Enqueue(T node);
+        T Dequeue();
     }
 }

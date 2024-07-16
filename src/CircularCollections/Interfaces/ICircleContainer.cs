@@ -13,7 +13,6 @@ namespace CircularCollections
         public T Bottom { get; set; }
 
         T Peek();
-        T Pop();
         T Rotate();
         bool Contains(T target);
     }
