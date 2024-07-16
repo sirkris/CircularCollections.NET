@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CircularCollections.Interfaces
+namespace CircularCollections
 {
-    interface ICircleQueue<T> : ICircleContainer<T>
+    public interface ICircleQueue<T> : ICircleContainer<T>
     {
+        void Enqueue(T node);
+        internal T[] _data { get; set; }
     }
 }

@@ -4,7 +4,9 @@ using System.Text;
 
 namespace CircularCollections
 {
-    interface ICircleStack<T> : ICircleContainer<T>
+    public interface ICircleStack<T> : ICircleContainer<T>
     {
+        void Push(T node);
+        internal T[] _data { get; set; }
     }
 }
