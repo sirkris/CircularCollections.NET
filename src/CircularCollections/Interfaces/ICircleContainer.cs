@@ -8,6 +8,7 @@ namespace CircularCollections
     {
         public int Pointer { get; set; }
         public int Size { get; set; }
+        public int Count { get; set; }
 
         public T Top { get; set; }
         public T Bottom { get; set; }

@@ -17,7 +17,7 @@ namespace CircularCollections
 
         T ICircleContainer<T>.Bottom
         {
-            get { return ((ICircleHeap<T>)this)._data[Size - 1].Value; }
+            get { return ((ICircleHeap<T>)this)._data[Count - 1].Value; }
             set { }
         }
 
@@ -29,6 +29,13 @@ namespace CircularCollections
             }
             set { }
         }
+
+        public int Count
+        {
+            get { return _count; }
+            set { }
+        }
+        private int _count;
 
         public CircleMaxHeap(int size) { ((ICircleHeap<T>)this)._data = new IHeapEntry<T>[size]; }
 
@@ -75,6 +82,8 @@ namespace CircularCollections
                     ((ICircleHeap<T>)this)._data[i] = tmp;
                 }
             }
+
+            if (!Count.Equals(Size)) { _count++; }
         }
 
         public T Peek()
@@ -86,6 +95,7 @@ namespace CircularCollections
         {
             T res = ((ICircleHeap<T>)this).Peek();
             ((ICircleHeap<T>)this)._data[((ICircleHeap<T>)this).Pointer] = default;
+            _count--;
 
             Rotate();
 
@@ -113,6 +123,25 @@ namespace CircularCollections
             ((ICircleHeap<T>)this).Pointer = pointer; // Reset the pointer back to its original position
 
             return !i.Equals(((ICircleHeap<T>)this)._data.Length);
+        }
+
+        public bool Contains(T target, int index) { return Contains(new HeapEntry<T>(index, target)); }
+
+        public bool Contains(IHeapEntry<T> target) // TODO - Test
+        {
+            if (target == null) { throw new NullReferenceException("Target cannot be null."); }
+
+            int left = 0, right = ((ICircleHeap<T>)this)._data.Length - 1;
+            while (!left.Equals(right))
+            {
+                int m = left + ((right - left) / 2);
+
+                if (target.Value.Equals(((ICircleHeap<T>)this)._data[m].Value)) { return true; }
+                else if (target.Index > ((ICircleHeap<T>)this)._data[m].Index) { right = m; }
+                else { left = ++m; }
+            }
+
+            return false;
         }
     }
 }
