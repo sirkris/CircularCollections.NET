@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CircularCollections
+namespace Collections.Generic.Circular
 {
     class CircleMinHeap<T> : ICircleHeap<T>
     {

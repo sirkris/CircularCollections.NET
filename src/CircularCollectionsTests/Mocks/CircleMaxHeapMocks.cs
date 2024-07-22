@@ -1,20 +1,27 @@
-﻿using CircularCollections;
+﻿using Collections.Generic.Circular;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CircularCollectionsTests.Mocks
+namespace CircularTests.Mocks
 {
     public static class CircleMaxHeapMocks
     {
-        public static IHeapEntry<char>[] DataEmptySize1Mock { get; set; } 
+        public static IHeapEntry<char>[] DataEmptySize1Mock { get; set; }
             = new HeapEntry<char>[1];
+        public static IHeapEntry<char>[] DataEmptySize3Mock { get; set; }
+            = new HeapEntry<char>[3];
         public static IHeapEntry<char>[] Data1EntryWithSize2Mock { get; set; }
             = new HeapEntry<char>[2] { new HeapEntry<char>(10, 'a'), null };
         public static IHeapEntry<char>[] Data2EntriesWithSize3Mock { get; set; }
             = new HeapEntry<char>[3] { new HeapEntry<char>(10, 'a'), new HeapEntry<char>(5, 'c'), null };
         public static IHeapEntry<char>[] Data3EntriesWithSize3Mock { get; set; }
             = new HeapEntry<char>[3] { new HeapEntry<char>(10, 'a'), new HeapEntry<char>(8, 'b'), new HeapEntry<char>(5, 'c') };
+        public static IHeapEntry<char>[] Data3EntriesWithSize5Mock { get; set; }
+            = new HeapEntry<char>[5]
+            {
+                new HeapEntry<char>(10, 'a'), new HeapEntry<char>(8, 'b'), new HeapEntry<char>(5, 'c'), null, null
+            };
         public static IHeapEntry<char>[] Data26EntriesWithSize26Mock { get; set; }
             = new HeapEntry<char>[26]
             {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CircularCollections
+namespace Collections.Generic.Circular
 {
     public class CircleStack<T> : ICircleStack<T>
     {

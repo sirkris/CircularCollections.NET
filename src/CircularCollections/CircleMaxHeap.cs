@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Collections.Generic.Circular.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CircularCollections
+namespace Collections.Generic.Circular
 {
-    class CircleMaxHeap<T> : ICircleHeap<T>
+    public class CircleMaxHeap<T> : ICircleHeap<T>
     {
         IHeapEntry<T>[] ICircleHeap<T>._data { get; set; }
         int ICircleContainer<T>.Pointer { get; set; }
@@ -17,7 +18,7 @@ namespace CircularCollections
 
         T ICircleContainer<T>.Bottom
         {
-            get { return ((ICircleHeap<T>)this)._data[Count - 1].Value; }
+            get { return (!Count.Equals(0) ? ((ICircleHeap<T>)this)._data[Count - 1].Value : default); }
             set { }
         }
 
@@ -43,6 +44,20 @@ namespace CircularCollections
         {
             ((ICircleHeap<T>)this)._data
 = (IHeapEntry<T>[])container._data.Clone();
+            Count = container.Count;
+        }
+
+        // It is not recommended that you use this constructor on inputs that are partially unfilled AND have valid null entries.
+        // It will not be possible to obtain a valid count in that case since we don't know how to interpret the nulls.
+        public CircleMaxHeap(IHeapEntry<T>[] data, bool countNulls = false)
+        {
+            ((ICircleHeap<T>)this)._data = data;
+            if (countNulls) { Count = data.Length; } // Assumes any null values are valid entries; O(1) time
+            else
+            {
+                // Assumes any null values represent empty space so break at the first null; O(n) time
+                for (int i = 0; i < data.Length && data[i] != null; i++) { Count++; }
+            }
         }
 
         public ICircleHeap<T> Merge(ICircleHeap<T> heapToMerge)
@@ -93,23 +108,31 @@ namespace CircularCollections
 
         public T Pop()
         {
+            if (Count.Equals(0)) { throw new HeapEmptyException("Heap empty."); }
+            else if (((ICircleHeap<T>)this).Pointer >= Count) { throw new InvalidOperationException("Pointer past end."); }
+
             T res = ((ICircleHeap<T>)this).Peek();
             ((ICircleHeap<T>)this)._data[((ICircleHeap<T>)this).Pointer] = default;
             _count--;
 
-            Rotate();
+            // Sift up
+            for (int i = ((ICircleHeap<T>)this).Pointer + 1; i < Size; i++)
+            {
+                ((ICircleHeap<T>)this)._data[i - 1] = ((ICircleHeap<T>)this)._data[i];
+                ((ICircleHeap<T>)this)._data[i] = default;
+            }
+
+            // If pointer no longer points to an entry (i.e. we popped at the bottom), decrement up to the previous entry
+            if (((ICircleHeap<T>)this).Pointer.Equals(Count) && !Count.Equals(0)) { ((ICircleHeap<T>)this).Pointer--; }
 
             return res;
         }
 
         public T Rotate()
         {
-            if ((--((ICircleHeap<T>)this).Pointer) < 0)
-            {
-                ((ICircleHeap<T>)this).Pointer = ((ICircleHeap<T>)this)._data.Length - 1;
-            }
+            ((ICircleQueue<T>)this).Pointer = (++((ICircleQueue<T>)this).Pointer) % ((ICircleQueue<T>)this)._data.Length;
 
-            return ((ICircleHeap<T>)this).Peek();
+            return ((ICircleQueue<T>)this).Peek();
         }
 
         public bool Contains(T target)

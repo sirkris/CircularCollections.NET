@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CircularCollections
+namespace Collections.Generic.Circular
 {
     public interface ICircleStack<T> : ICircleContainer<T>
     {
