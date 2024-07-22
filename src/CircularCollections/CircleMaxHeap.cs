@@ -1,5 +1,6 @@
 ﻿using Collections.Generic.Circular.Exceptions;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
@@ -59,6 +60,10 @@ namespace Collections.Generic.Circular
                 for (int i = 0; i < data.Length && data[i] != null; i++) { Count++; }
             }
         }
+
+        public IEnumerator<T> GetEnumerator() { foreach (T t in ((ICircleHeap<T>)this)._data) { yield return t; } }
+
+        IEnumerator IEnumerable.GetEnumerator() { return GetEnumerator(); }
 
         public ICircleHeap<T> Merge(ICircleHeap<T> heapToMerge)
         {

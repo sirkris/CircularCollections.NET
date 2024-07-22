@@ -287,7 +287,10 @@ namespace Collections.Generic.CircularTests
         [Fact]
         public void DataArrayShouldBeTraversibleInOrder()
         {
+            ICircleHeap<char> circleMaxHeap = new CircleMaxHeap<char>(CircleMaxHeapMocks.Data26EntriesWithSize26Mock);
 
+            int i = 0;
+            foreach (char c in circleMaxHeap) { Assert.Equal(circleMaxHeap._data[i++].Value, c); }
         }
 
         [Fact]

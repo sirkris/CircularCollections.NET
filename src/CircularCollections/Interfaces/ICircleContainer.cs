@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Collections.Generic.Circular
 {
-    public interface ICircleContainer<T>
+    public interface ICircleContainer<T> : IEnumerable<T>
     {
         public int Pointer { get; set; }
         public int Size { get; set; }
