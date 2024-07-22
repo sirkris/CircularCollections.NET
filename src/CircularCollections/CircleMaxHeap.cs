@@ -62,7 +62,10 @@ namespace Collections.Generic.Circular
             }
         }
 
-        public IEnumerator<T> GetEnumerator() { foreach (T t in ((ICircleHeap<T>)this)._data) { yield return t; } }
+        public IEnumerator<T> GetEnumerator()
+        {
+            foreach (IHeapEntry<T> entry in ((ICircleHeap<T>)this)._data) { yield return entry.Value; }
+        }
 
         IEnumerator IEnumerable.GetEnumerator() { return GetEnumerator(); }
 
