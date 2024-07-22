@@ -296,7 +296,11 @@ namespace Collections.Generic.CircularTests
         [Fact]
         public void DataArrayShouldBeAccessibleViaIndexer()
         {
-
+            ICircleHeap<char> circleMaxHeap = new CircleMaxHeap<char>(CircleMaxHeapMocks.Data26EntriesWithSize26Mock);
+            for (int i = 0; i < circleMaxHeap.Count; i++)
+            {
+                Assert.Equal(circleMaxHeap._data[i].Value, circleMaxHeap[i]);
+            }
         }
     }
 }

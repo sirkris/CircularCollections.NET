@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 
 namespace Collections.Generic.Circular
@@ -64,6 +65,18 @@ namespace Collections.Generic.Circular
         public IEnumerator<T> GetEnumerator() { foreach (T t in ((ICircleHeap<T>)this)._data) { yield return t; } }
 
         IEnumerator IEnumerable.GetEnumerator() { return GetEnumerator(); }
+
+        public T this[int key]
+        {
+            get
+            {
+                return ((ICircleHeap<T>)this)._data[key].Value;
+            }
+            set
+            {
+                throw new ReadOnlyException("Attempting to set data array directly could violate heap property.");
+            }
+        }
 
         public ICircleHeap<T> Merge(ICircleHeap<T> heapToMerge)
         {

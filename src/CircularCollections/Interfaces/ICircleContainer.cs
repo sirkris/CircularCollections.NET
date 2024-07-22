@@ -16,5 +16,7 @@ namespace Collections.Generic.Circular
         T Peek();
         T Rotate();
         bool Contains(T target);
+
+        T this[int key] { get; set; }
     }
 }
