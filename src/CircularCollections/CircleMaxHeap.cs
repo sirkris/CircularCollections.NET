@@ -171,7 +171,7 @@ namespace Collections.Generic.Circular
 
         public bool Contains(T target, int index) { return Contains(new HeapEntry<T>(index, target)); }
 
-        public bool Contains(IHeapEntry<T> target) // TODO - Test
+        public bool Contains(IHeapEntry<T> target)
         {
             if (target == null) { throw new NullReferenceException("Target cannot be null."); }
 

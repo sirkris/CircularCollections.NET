@@ -25,15 +25,15 @@ namespace CircularTests.Mocks
         public static IHeapEntry<char>[] Data26EntriesWithSize26Mock { get; set; }
             = new HeapEntry<char>[26]
             {
-                new HeapEntry<char>(2600, 'z'), new HeapEntry<char>(2500, 'y'), new HeapEntry<char>(2400, 'x'),
-                new HeapEntry<char>(2300, 'w'), new HeapEntry<char>(2200, 'v'), new HeapEntry<char>(2100, 'u'),
-                new HeapEntry<char>(2000, 't'), new HeapEntry<char>(1900, 's'), new HeapEntry<char>(1800, 'r'),
-                new HeapEntry<char>(1700, 'q'), new HeapEntry<char>(1600, 'p'), new HeapEntry<char>(1500, 'o'),
-                new HeapEntry<char>(1400, 'n'), new HeapEntry<char>(1300, 'm'), new HeapEntry<char>(1200, 'l'),
-                new HeapEntry<char>(1100, 'k'), new HeapEntry<char>(1000, 'j'), new HeapEntry<char>(900, 'i'),
-                new HeapEntry<char>(800, 'h'), new HeapEntry<char>(700, 'g'), new HeapEntry<char>(2400, 'f'),
-                new HeapEntry<char>(500, 'e'), new HeapEntry<char>(400, 'd'), new HeapEntry<char>(2400, 'c'),
-                new HeapEntry<char>(200, 'b'), new HeapEntry<char>(100, 'a')
+                new HeapEntry<char>(2600, 'a'), new HeapEntry<char>(2500, 'b'), new HeapEntry<char>(2400, 'c'),
+                new HeapEntry<char>(2300, 'd'), new HeapEntry<char>(2200, 'e'), new HeapEntry<char>(2100, 'f'),
+                new HeapEntry<char>(2000, 'g'), new HeapEntry<char>(1900, 'h'), new HeapEntry<char>(1800, 'i'),
+                new HeapEntry<char>(1700, 'j'), new HeapEntry<char>(1600, 'k'), new HeapEntry<char>(1500, 'l'),
+                new HeapEntry<char>(1400, 'm'), new HeapEntry<char>(1300, 'n'), new HeapEntry<char>(1200, 'o'),
+                new HeapEntry<char>(1100, 'p'), new HeapEntry<char>(1000, 'q'), new HeapEntry<char>(900, 'r'),
+                new HeapEntry<char>(800, 's'), new HeapEntry<char>(700, 't'), new HeapEntry<char>(600, 'u'),
+                new HeapEntry<char>(500, 'v'), new HeapEntry<char>(400, 'w'), new HeapEntry<char>(300, 'x'),
+                new HeapEntry<char>(200, 'y'), new HeapEntry<char>(100, 'z')
             };
     }
 }
