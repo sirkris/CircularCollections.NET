@@ -1,28 +1,29 @@
-﻿using Collections.Generic.Circular;
+﻿using Collections.Generic.CircularTests.Mocks.Interfaces;
+using Collections.Generic.Circular;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CircularTests.Mocks
+namespace Collections.Generic.CircularTests.Mocks
 {
-    public static class CircleMinHeapMocks
+    public class CircleMinHeapMocks : ICircleHeapMocks
     {
-        public static IHeapEntry<char>[] DataEmptySize1Mock { get; set; }
+        public IHeapEntry<char>[] DataEmptySize1Mock { get; set; }
             = new HeapEntry<char>[1];
-        public static IHeapEntry<char>[] DataEmptySize3Mock { get; set; }
+        public IHeapEntry<char>[] DataEmptySize3Mock { get; set; }
             = new HeapEntry<char>[3];
-        public static IHeapEntry<char>[] Data1EntryWithSize2Mock { get; set; }
+        public IHeapEntry<char>[] Data1EntryWithSize2Mock { get; set; }
             = new HeapEntry<char>[2] { new HeapEntry<char>(10, 'a'), null };
-        public static IHeapEntry<char>[] Data2EntriesWithSize3Mock { get; set; }
+        public IHeapEntry<char>[] Data2EntriesWithSize3Mock { get; set; }
             = new HeapEntry<char>[3] { new HeapEntry<char>(5, 'a'), new HeapEntry<char>(10, 'c'), null };
-        public static IHeapEntry<char>[] Data3EntriesWithSize3Mock { get; set; }
+        public IHeapEntry<char>[] Data3EntriesWithSize3Mock { get; set; }
             = new HeapEntry<char>[3] { new HeapEntry<char>(5, 'a'), new HeapEntry<char>(8, 'b'), new HeapEntry<char>(10, 'c') };
-        public static IHeapEntry<char>[] Data3EntriesWithSize5Mock { get; set; }
+        public IHeapEntry<char>[] Data3EntriesWithSize5Mock { get; set; }
             = new HeapEntry<char>[5]
             {
                 new HeapEntry<char>(5, 'a'), new HeapEntry<char>(8, 'b'), new HeapEntry<char>(10, 'c'), null, null
             };
-        public static IHeapEntry<char>[] Data26EntriesWithSize26Mock { get; set; }
+        public IHeapEntry<char>[] Data26EntriesWithSize26Mock { get; set; }
             = new HeapEntry<char>[26]
             {
                 new HeapEntry<char>(100, 'a'), new HeapEntry<char>(200, 'b'), new HeapEntry<char>(300, 'c'),
