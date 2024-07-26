@@ -169,7 +169,7 @@ namespace Collections.Generic.CircularTests
         public void RotateShouldIncrementPointerPosition()
         {
             ICircleHeap<char> circleMinHeap = new CircleMinHeap<char>(CircleMinHeapMocks.Data3EntriesWithSize3Mock);
-            for (int i = 0; i <= CircleMinHeapMocks.Data3EntriesWithSize3Mock.Length; i++)
+            for (int i = 0; i < CircleMinHeapMocks.Data3EntriesWithSize3Mock.Length; i++)
             {
                 Assert.Equal(i, circleMinHeap.Pointer);
                 circleMinHeap.Rotate();

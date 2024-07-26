@@ -169,7 +169,7 @@ namespace Collections.Generic.CircularTests
         public void RotateShouldIncrementPointerPosition()
         {
             ICircleHeap<char> circleMaxHeap = new CircleMaxHeap<char>(CircleMaxHeapMocks.Data3EntriesWithSize3Mock);
-            for (int i = 0; i <= CircleMaxHeapMocks.Data3EntriesWithSize3Mock.Length; i++)
+            for (int i = 0; i < CircleMaxHeapMocks.Data3EntriesWithSize3Mock.Length; i++)
             {
                 Assert.Equal(i, circleMaxHeap.Pointer);
                 circleMaxHeap.Rotate();

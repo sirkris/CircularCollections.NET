@@ -46,19 +46,19 @@ namespace Collections.Generic.Circular
         {
             ((ICircleHeap<T>)this)._data
 = (IHeapEntry<T>[])container._data.Clone();
-            Count = container.Count;
+            _count = container.Count;
         }
 
         // It is not recommended that you use this constructor on inputs that are partially unfilled AND have valid null entries.
         // It will not be possible to obtain a valid count in that case since we don't know how to interpret the nulls.
         public CircleMaxHeap(IHeapEntry<T>[] data, bool countNulls = false)
         {
-            ((ICircleHeap<T>)this)._data = data;
-            if (countNulls) { Count = data.Length; } // Assumes any null values are valid entries; O(1) time
+            ((ICircleHeap<T>)this)._data = (IHeapEntry<T>[])data.Clone();
+            if (countNulls) { _count = data.Length; } // Assumes any null values are valid entries; O(1) time
             else
             {
                 // Assumes any null values represent empty space so break at the first null; O(n) time
-                for (int i = 0; i < data.Length && data[i] != null; i++) { Count++; }
+                for (int i = 0; i < data.Length && data[i] != null; i++) { _count++; }
             }
         }
 
@@ -101,14 +101,16 @@ namespace Collections.Generic.Circular
             // Note - If we're pushing onto a full circular maxheap, the lowest element will be discarded
             IHeapEntry<T> heapEntry = new HeapEntry<T>(index, node);
             IHeapEntry<T> swap = null;
+            bool swapped = false;  // Use this since swap can go back to null when traversing empty space
             for (int i = 0; i < ((ICircleHeap<T>)this).Size; i++)
             {
-                if (swap == null)
+                if (!swapped)
                 {
                     if (((ICircleHeap<T>)this)._data[i] == null || heapEntry.Index > ((ICircleHeap<T>)this)._data[i].Index)
                     {
                         swap = ((ICircleHeap<T>)this)._data[i];
                         ((ICircleHeap<T>)this)._data[i] = heapEntry;
+                        swapped = true;
                     }
                 }
                 else
@@ -151,9 +153,9 @@ namespace Collections.Generic.Circular
 
         public T Rotate()
         {
-            ((ICircleQueue<T>)this).Pointer = (++((ICircleQueue<T>)this).Pointer) % ((ICircleQueue<T>)this)._data.Length;
+            ((ICircleHeap<T>)this).Pointer = (++((ICircleHeap<T>)this).Pointer) % ((ICircleHeap<T>)this)._data.Length;
 
-            return ((ICircleQueue<T>)this).Peek();
+            return ((ICircleHeap<T>)this).Peek();
         }
 
         public bool Contains(T target)
