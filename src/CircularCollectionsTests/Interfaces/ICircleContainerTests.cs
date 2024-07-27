@@ -10,5 +10,11 @@ namespace Collections.Generic.CircularTests.Interfaces
         public ICircleHeapMocks Mocks { get; set; }
 
         public object TestSetup(object[] mock);
+
+        public void SizeShouldEqualConstructorInputDataLength();
+        public void SizeShouldEqualDataLength();
+        public void CountShouldStartAtZero();
+        public void CountShouldStartAtConstructorInputCount();
+        public void PeekShouldReturnElementAtPointer();
     }
 }

@@ -7,7 +7,7 @@ using Xunit;
 
 namespace Collections.Generic.CircularTests.Abstracts
 {
-    public abstract class CircleHeapTests : ICircleContainerTests
+    public abstract class CircleHeapTests : ICircleHeapTests
     {
         public abstract ICircleHeapMocks Mocks { get; set; }
 
@@ -15,6 +15,8 @@ namespace Collections.Generic.CircularTests.Abstracts
 
         // This is necessary because covariant return types are not yet supported in C#
         object ICircleContainerTests.TestSetup(object[] mock) => TestSetup((IHeapEntry<char>[])mock);
+
+        public abstract void PeekShouldReturnElementAtPointer();
 
         [Fact]
         public void PushShouldAddInitialElement()

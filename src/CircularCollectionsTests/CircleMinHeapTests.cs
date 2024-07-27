@@ -97,7 +97,7 @@ namespace Collections.Generic.CircularTests
         }
 
         [Fact]
-        public void PeekShouldReturnElementAtPointer()
+        public override void PeekShouldReturnElementAtPointer()
         {
             ICircleHeap<char> circleHeap = new CircleMinHeap<char>(Mocks.Data26EntriesWithSize26Mock);
             circleHeap.Rotate();
