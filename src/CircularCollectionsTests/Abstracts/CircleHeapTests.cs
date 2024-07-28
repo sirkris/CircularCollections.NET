@@ -45,7 +45,7 @@ namespace Collections.Generic.CircularTests.Abstracts
         public void SizeShouldEqualConstructorInputDataLength()
         {
             ICircleHeap<char> circleHeap = TestSetup((IHeapEntry<char>[])Mocks.DataEmptySize3Mock);
-            Assert.Equal(Mocks.DataEmptySize3Mock.Length, circleHeap.Size);
+            Assert.Equal(((IHeapEntry<char>[])Mocks.DataEmptySize3Mock).Length, circleHeap.Size);
         }
 
         [Fact]
@@ -103,7 +103,7 @@ namespace Collections.Generic.CircularTests.Abstracts
         public void RotateShouldIncrementPointerPosition()
         {
             ICircleHeap<char> circleHeap = TestSetup((IHeapEntry<char>[])Mocks.Data3EntriesWithSize3Mock);
-            for (int i = 0; i < Mocks.Data3EntriesWithSize3Mock.Length; i++)
+            for (int i = 0; i < ((IHeapEntry<char>[])Mocks.Data3EntriesWithSize3Mock).Length; i++)
             {
                 Assert.Equal(i, circleHeap.Pointer);
                 circleHeap.Rotate();
