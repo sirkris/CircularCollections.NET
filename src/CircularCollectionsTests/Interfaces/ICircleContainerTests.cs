@@ -7,8 +7,6 @@ namespace Collections.Generic.CircularTests.Interfaces
 {
     public interface ICircleContainerTests
     {
-        public ICircleHeapMocks Mocks { get; set; }
-
         public object TestSetup(object[] mock);
 
         public void SizeShouldEqualConstructorInputDataLength();
@@ -16,5 +14,9 @@ namespace Collections.Generic.CircularTests.Interfaces
         public void CountShouldStartAtZero();
         public void CountShouldStartAtConstructorInputCount();
         public void PeekShouldReturnElementAtPointer();
+        public void ContainsShouldReturnTrueIfElementIsPresent();
+        public void ContainsShouldReturnFalseIfElementIsNotPresent();
+        public void DataArrayShouldBeTraversibleInOrder();
+        public void DataArrayShouldBeAccessibleViaIndexer();
     }
 }

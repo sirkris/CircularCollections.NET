@@ -22,60 +22,60 @@ namespace Collections.Generic.CircularTests
         [Fact]
         public void PushShouldAddHigherIndexElementToTop()
         {
-            ICircleHeap<char> circleHeap = TestSetup(Mocks.Data1EntryWithSize2Mock);
+            ICircleHeap<char> circleHeap = TestSetup((IHeapEntry<char>[])Mocks.Data1EntryWithSize2Mock);
             circleHeap.Push('0', 20);
 
             Assert.Equal('0', circleHeap._data[0].Value);
-            Assert.Equal(Mocks.Data1EntryWithSize2Mock[0].Value, circleHeap._data[1].Value);
+            Assert.Equal(((IHeapEntry<char>[])Mocks.Data1EntryWithSize2Mock)[0].Value, circleHeap._data[1].Value);
         }
 
         [Fact]
         public void PushShouldAddLowerIndexElementToBottom()
         {
-            ICircleHeap<char> circleHeap = TestSetup(Mocks.Data1EntryWithSize2Mock);
+            ICircleHeap<char> circleHeap = TestSetup((IHeapEntry<char>[])Mocks.Data1EntryWithSize2Mock);
             circleHeap.Push('b', 5);
 
             Assert.Equal('b', circleHeap._data[1].Value);
-            Assert.Equal(Mocks.Data1EntryWithSize2Mock[0].Value, circleHeap._data[0].Value);
+            Assert.Equal(((IHeapEntry<char>[])Mocks.Data1EntryWithSize2Mock)[0].Value, circleHeap._data[0].Value);
         }
 
         [Fact]
         public void PushShouldAddMidIndexElementToMiddle()
         {
-            ICircleHeap<char> circleHeap = TestSetup(Mocks.Data2EntriesWithSize3Mock);
+            ICircleHeap<char> circleHeap = TestSetup((IHeapEntry<char>[])Mocks.Data2EntriesWithSize3Mock);
             circleHeap.Push('b', 8);
 
-            Assert.Equal(Mocks.Data2EntriesWithSize3Mock[0].Value, circleHeap._data[0].Value);
+            Assert.Equal(((IHeapEntry<char>[])Mocks.Data2EntriesWithSize3Mock)[0].Value, circleHeap._data[0].Value);
             Assert.Equal('b', circleHeap._data[1].Value);
-            Assert.Equal(Mocks.Data2EntriesWithSize3Mock[1].Value, circleHeap._data[2].Value);
+            Assert.Equal(((IHeapEntry<char>[])Mocks.Data2EntriesWithSize3Mock)[1].Value, circleHeap._data[2].Value);
         }
 
         [Fact]
         public void PushLowToFullShouldLeaveUnchanged()
         {
-            ICircleHeap<char> circleHeap = TestSetup(Mocks.Data3EntriesWithSize3Mock);
+            ICircleHeap<char> circleHeap = TestSetup((IHeapEntry<char>[])Mocks.Data3EntriesWithSize3Mock);
             circleHeap.Push('d', 1);
 
-            Assert.Equal(Mocks.Data3EntriesWithSize3Mock[0].Value, circleHeap._data[0].Value);
-            Assert.Equal(Mocks.Data3EntriesWithSize3Mock[1].Value, circleHeap._data[1].Value);
-            Assert.Equal(Mocks.Data3EntriesWithSize3Mock[2].Value, circleHeap._data[2].Value);
+            Assert.Equal(((IHeapEntry<char>[])Mocks.Data3EntriesWithSize3Mock)[0].Value, circleHeap._data[0].Value);
+            Assert.Equal(((IHeapEntry<char>[])Mocks.Data3EntriesWithSize3Mock)[1].Value, circleHeap._data[1].Value);
+            Assert.Equal(((IHeapEntry<char>[])Mocks.Data3EntriesWithSize3Mock)[2].Value, circleHeap._data[2].Value);
         }
 
         [Fact]
         public void PushToFullShouldOverwriteLowestValue()
         {
-            ICircleHeap<char> circleHeap = TestSetup(Mocks.Data3EntriesWithSize3Mock);
+            ICircleHeap<char> circleHeap = TestSetup((IHeapEntry<char>[])Mocks.Data3EntriesWithSize3Mock);
             circleHeap.Push('0', 20);
 
             Assert.Equal('0', circleHeap._data[0].Value);
-            Assert.Equal(Mocks.Data3EntriesWithSize3Mock[0].Value, circleHeap._data[1].Value);
-            Assert.Equal(Mocks.Data3EntriesWithSize3Mock[1].Value, circleHeap._data[2].Value);
+            Assert.Equal(((IHeapEntry<char>[])Mocks.Data3EntriesWithSize3Mock)[0].Value, circleHeap._data[1].Value);
+            Assert.Equal(((IHeapEntry<char>[])Mocks.Data3EntriesWithSize3Mock)[1].Value, circleHeap._data[2].Value);
         }
 
         [Fact]
         public void BottomShouldPointToElementAtLastFilledIndex()
         {
-            ICircleHeap<char> circleHeap = TestSetup(Mocks.DataEmptySize3Mock);
+            ICircleHeap<char> circleHeap = TestSetup((IHeapEntry<char>[])Mocks.DataEmptySize3Mock);
             circleHeap.Push('b', 10);
             circleHeap.Push('a', 20);
 
@@ -87,32 +87,32 @@ namespace Collections.Generic.CircularTests
         [Fact]
         public void PopShouldRemoveElementAtPointer()
         {
-            ICircleHeap<char> circleHeap = TestSetup(Mocks.Data3EntriesWithSize3Mock);
+            ICircleHeap<char> circleHeap = TestSetup((IHeapEntry<char>[])Mocks.Data3EntriesWithSize3Mock);
             circleHeap.Rotate();
             circleHeap.Pop();
 
             Assert.Equal(2, circleHeap.Count);
-            Assert.Equal(Mocks.Data3EntriesWithSize3Mock[0].Value, circleHeap._data[0].Value);
-            Assert.Equal(Mocks.Data3EntriesWithSize3Mock[2].Value, circleHeap._data[1].Value);
+            Assert.Equal(((IHeapEntry<char>[])Mocks.Data3EntriesWithSize3Mock)[0].Value, circleHeap._data[0].Value);
+            Assert.Equal(((IHeapEntry<char>[])Mocks.Data3EntriesWithSize3Mock)[2].Value, circleHeap._data[1].Value);
         }
 
         [Fact]
         public override void PeekShouldReturnElementAtPointer()
         {
-            ICircleHeap<char> circleHeap = TestSetup(Mocks.Data26EntriesWithSize26Mock);
+            ICircleHeap<char> circleHeap = TestSetup((IHeapEntry<char>[])Mocks.Data26EntriesWithSize26Mock);
             circleHeap.Rotate();
             circleHeap.Rotate();
             circleHeap.Rotate();
 
-            Assert.Equal(Mocks.Data26EntriesWithSize26Mock[3].Value, circleHeap.Peek());
+            Assert.Equal(((IHeapEntry<char>[])Mocks.Data26EntriesWithSize26Mock)[3].Value, circleHeap.Peek());
             circleHeap.Reset();
-            Assert.Equal(Mocks.Data26EntriesWithSize26Mock[0].Value, circleHeap.Peek());
+            Assert.Equal(((IHeapEntry<char>[])Mocks.Data26EntriesWithSize26Mock)[0].Value, circleHeap.Peek());
         }
 
         [Fact]
         public void PopShouldReturnSameElementAsPeek()
         {
-            ICircleHeap<char> circleHeap = TestSetup(Mocks.Data26EntriesWithSize26Mock);
+            ICircleHeap<char> circleHeap = TestSetup((IHeapEntry<char>[])Mocks.Data26EntriesWithSize26Mock);
             circleHeap.Rotate();
             circleHeap.Rotate();
             circleHeap.Rotate();
@@ -123,8 +123,8 @@ namespace Collections.Generic.CircularTests
         [Fact]
         public void MergeShouldCombineElementsFromTwocircleHeaps()
         {
-            ICircleHeap<char> circleHeap = TestSetup(Mocks.Data3EntriesWithSize5Mock);
-            circleHeap.Merge(TestSetup(Mocks.Data2EntriesWithSize3Mock));
+            ICircleHeap<char> circleHeap = TestSetup((IHeapEntry<char>[])Mocks.Data3EntriesWithSize5Mock);
+            circleHeap.Merge(TestSetup((IHeapEntry<char>[])Mocks.Data2EntriesWithSize3Mock));
 
             Assert.Equal(5, circleHeap.Count);
             Assert.Equal('a', circleHeap._data[0].Value);
@@ -137,8 +137,8 @@ namespace Collections.Generic.CircularTests
         [Fact]
         public void MergeShouldCombineMaxElementsFromTwocircleHeaps()
         {
-            ICircleHeap<char> circleHeap = TestSetup(Mocks.Data3EntriesWithSize3Mock);
-            circleHeap.Merge(TestSetup(Mocks.Data2EntriesWithSize3Mock));
+            ICircleHeap<char> circleHeap = TestSetup((IHeapEntry<char>[])Mocks.Data3EntriesWithSize3Mock);
+            circleHeap.Merge(TestSetup((IHeapEntry<char>[])Mocks.Data2EntriesWithSize3Mock));
 
             Assert.Equal(3, circleHeap.Count);
             Assert.Equal('a', circleHeap._data[0].Value);
