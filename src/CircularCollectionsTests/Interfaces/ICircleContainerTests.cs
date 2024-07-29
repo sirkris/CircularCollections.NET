@@ -7,7 +7,7 @@ namespace Collections.Generic.CircularTests.Interfaces
 {
     public interface ICircleContainerTests
     {
-        public object TestSetup(object[] mock);
+        public object TestSetup(object mock);
 
         public void SizeShouldEqualConstructorInputDataLength();
         public void SizeShouldEqualDataLength();

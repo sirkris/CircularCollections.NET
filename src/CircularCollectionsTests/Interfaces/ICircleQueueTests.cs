@@ -9,7 +9,7 @@ namespace Collections.Generic.CircularTests.Interfaces
     {
         public ICircleQueueMocks Mocks { get; set; }
 
-        public void EnqueueToEmptyShouldAdd();
+        public void EnqueueShouldAddInitialElement();
         public void EnqueueToPartiallyFilledShouldAdd();
         public void EnqueueToFullShouldReplace();
         public void DequeueShouldRemoveFirstIn();

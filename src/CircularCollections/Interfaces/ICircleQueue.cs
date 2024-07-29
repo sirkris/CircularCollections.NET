@@ -6,7 +6,7 @@ namespace Collections.Generic.Circular
 {
     public interface ICircleQueue<T> : ICircleContainer<T>
     {
-        internal T[] _data { get; set; }
+        public T[] _data { get; set; }
 
         void Enqueue(T node);
         T Dequeue();

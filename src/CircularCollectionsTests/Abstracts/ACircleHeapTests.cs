@@ -7,14 +7,14 @@ using Xunit;
 
 namespace Collections.Generic.CircularTests.Abstracts
 {
-    public abstract class CircleHeapTests : ICircleHeapTests
+    public abstract class ACircleHeapTests : ICircleHeapTests
     {
         public abstract ICircleHeapMocks Mocks { get; set; }
 
         public abstract ICircleHeap<char> TestSetup(IHeapEntry<char>[] mock);
 
         // This is necessary because covariant return types are not yet supported in C#
-        object ICircleContainerTests.TestSetup(object[] mock) => TestSetup((IHeapEntry<char>[])mock);
+        object ICircleContainerTests.TestSetup(object mock) => TestSetup((IHeapEntry<char>[])mock);
 
         public abstract void PeekShouldReturnElementAtPointer();
 
@@ -103,9 +103,9 @@ namespace Collections.Generic.CircularTests.Abstracts
         public void RotateShouldIncrementPointerPosition()
         {
             ICircleHeap<char> circleHeap = TestSetup((IHeapEntry<char>[])Mocks.Data3EntriesWithSize3Mock);
-            for (int i = 0; i < ((IHeapEntry<char>[])Mocks.Data3EntriesWithSize3Mock).Length; i++)
+            for (int i = 0; i < (((IHeapEntry<char>[])Mocks.Data3EntriesWithSize3Mock).Length * 3); i++)
             {
-                Assert.Equal(i, circleHeap.Pointer);
+                Assert.Equal(i % ((IHeapEntry<char>[])Mocks.Data3EntriesWithSize3Mock).Length, circleHeap.Pointer);
                 circleHeap.Rotate();
             }
             Assert.Equal(0, circleHeap.Pointer);

@@ -8,7 +8,7 @@ using Xunit;
 
 namespace Collections.Generic.CircularTests
 {
-    public class CircleMaxHeapTests : CircleHeapTests
+    public class CircleMaxHeapTests : ACircleHeapTests
     {
         public override ICircleHeapMocks Mocks { get; set; }
 

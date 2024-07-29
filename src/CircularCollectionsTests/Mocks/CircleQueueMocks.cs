@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+// Note - In CircleQueue and CircleStack, all entries are initially added at index 1
 namespace Collections.Generic.CircularTests.Mocks
 {
     public class CircleQueueMocks : ICircleQueueMocks
@@ -25,7 +26,7 @@ namespace Collections.Generic.CircularTests.Mocks
         }
 
         public char[] Data1EntryWithSize2Mock { get; set; }
-            = new char[2] { 'a', default };
+            = new char[2] { default, 'a' };
         object ICircleContainerMocks.Data1EntryWithSize2Mock
         {
             get { return Data1EntryWithSize2Mock; }
@@ -33,7 +34,7 @@ namespace Collections.Generic.CircularTests.Mocks
         }
 
         public char[] Data2EntriesWithSize3Mock { get; set; }
-            = new char[3] { 'a', 'c', default };
+            = new char[3] { default, 'a', 'c' };
         object ICircleContainerMocks.Data2EntriesWithSize3Mock
         {
             get { return Data2EntriesWithSize3Mock; }
@@ -41,7 +42,7 @@ namespace Collections.Generic.CircularTests.Mocks
         }
 
         public char[] Data3EntriesWithSize3Mock { get; set; }
-            = new char[3] { 'a', 'b', 'c' };
+            = new char[3] { 'c', 'a', 'b' };
         object ICircleContainerMocks.Data3EntriesWithSize3Mock
         {
             get { return Data3EntriesWithSize3Mock; }
@@ -51,7 +52,7 @@ namespace Collections.Generic.CircularTests.Mocks
         public char[] Data3EntriesWithSize5Mock { get; set; }
             = new char[5]
             {
-                'a', 'b', 'c', default, default
+                default, 'a', 'b', 'c', default
             };
         object ICircleContainerMocks.Data3EntriesWithSize5Mock
         {
@@ -62,8 +63,8 @@ namespace Collections.Generic.CircularTests.Mocks
         public char[] Data26EntriesWithSize26Mock { get; set; }
             = new char[26]
             {
-                'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
-                'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
+                'z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+                'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y'
             };
         object ICircleContainerMocks.Data26EntriesWithSize26Mock
         {
