@@ -4,5 +4,5 @@ using System.Text;
 
 namespace Collections.Generic.CircularTests.Mocks.Interfaces
 {
-    public interface ICircleQueueMocks : ICircleContainerMocks { }
+    public interface ICircleQueueAndStackMocks : ICircleContainerMocks { }
 }

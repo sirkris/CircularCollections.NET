@@ -9,7 +9,7 @@ namespace Collections.Generic.CircularTests.Abstracts
 {
     public abstract class ACircleQueueTests : ICircleQueueTests
     {
-        public abstract ICircleQueueMocks Mocks { get; set; }
+        public abstract ICircleQueueAndStackMocks Mocks { get; set; }
 
         public abstract ICircleQueue<char> TestSetup(char[] mock);
 

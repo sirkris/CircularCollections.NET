@@ -8,15 +8,15 @@ using Xunit;
 
 namespace Collections.Generic.CircularTests
 {
-    public class CircleQueueTests : ACircleQueueTests
+    public class CircleStackTests : ACircleStackTests
     {
         public override ICircleQueueAndStackMocks Mocks { get; set; }
 
-        public CircleQueueTests() { Mocks = new CircleQueueMocks(); }
+        public CircleStackTests() { Mocks = new CircleStackMocks(); }
 
-        public override ICircleQueue<char> TestSetup(char[] mock)
+        public override ICircleStack<char> TestSetup(char[] mock)
         {
-            return new CircleQueue<char>(mock);
+            return new CircleStack<char>(mock);
         }
     }
 }

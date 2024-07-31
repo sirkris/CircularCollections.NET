@@ -7,7 +7,7 @@ namespace Collections.Generic.CircularTests.Interfaces
 {
     public interface ICircleQueueTests : ICircleContainerTests
     {
-        public ICircleQueueMocks Mocks { get; set; }
+        public ICircleQueueAndStackMocks Mocks { get; set; }
 
         public void EnqueueShouldAddInitialElement();
         public void EnqueueToPartiallyFilledShouldAdd();
