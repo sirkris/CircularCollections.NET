@@ -7,6 +7,8 @@ namespace Collections.Generic.CircularTests.Interfaces
 {
     public interface ICircleQueueTests : ICircleContainerTests
     {
+        public object TestSetup(object mock, bool indexerIsReadOnly = true);
+
         public ICircleQueueAndStackMocks Mocks { get; set; }
 
         public void EnqueueShouldAddInitialElement();
@@ -14,5 +16,6 @@ namespace Collections.Generic.CircularTests.Interfaces
         public void EnqueueToFullShouldReplace();
         public void DequeueShouldRemoveFirstIn();
         public void RotateShouldIncrementPointerPosition();
+        public void DataArrayShouldBeWritableViaIndexerIfNotReadOnly();
     }
 }

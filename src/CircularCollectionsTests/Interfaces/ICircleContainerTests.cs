@@ -7,8 +7,6 @@ namespace Collections.Generic.CircularTests.Interfaces
 {
     public interface ICircleContainerTests
     {
-        public object TestSetup(object mock);
-
         public void SizeShouldEqualConstructorInputDataLength();
         public void SizeShouldEqualDataLength();
         public void CountShouldStartAtZero();
@@ -18,5 +16,6 @@ namespace Collections.Generic.CircularTests.Interfaces
         public void ContainsShouldReturnFalseIfElementIsNotPresent();
         public void DataArrayShouldBeTraversibleInOrder();
         public void DataArrayShouldBeAccessibleViaIndexer();
+        public void DataArrayShouldNotBeWritableViaIndexerIfReadOnly();
     }
 }

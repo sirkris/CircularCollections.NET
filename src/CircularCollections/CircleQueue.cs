@@ -9,6 +9,7 @@ namespace Collections.Generic.Circular
     public class CircleQueue<T> : ICircleQueue<T>
     {
         T[] ICircleQueue<T>._data { get; set; }
+        bool ICircleQueue<T>._indexerIsReadOnly { get; set; }
         int ICircleContainer<T>.Pointer { get; set; }
 
         T ICircleContainer<T>.Top
@@ -40,17 +41,22 @@ namespace Collections.Generic.Circular
         }
         private int _count;
 
-        public CircleQueue(int size) { ((ICircleQueue<T>)this)._data = new T[size]; }
+        public CircleQueue(int size, bool indexerIsReadOnly = true)
+        {
+            ((ICircleQueue<T>)this)._data = new T[size];
+            ((ICircleQueue<T>)this)._indexerIsReadOnly = indexerIsReadOnly;
+        }
 
-        public CircleQueue(ICircleQueue<T> container)
+        public CircleQueue(ICircleQueue<T> container, bool indexerIsReadOnly = true)
         {
             ((ICircleQueue<T>)this)._data = (T[])container._data.Clone();
             _count = container.Count;
+            ((ICircleQueue<T>)this)._indexerIsReadOnly = indexerIsReadOnly;
         }
 
         // It is not recommended that you use this constructor on inputs that are partially unfilled AND have valid null entries.
         // It will not be possible to obtain a valid count in that case since we don't know how to interpret the nulls.
-        public CircleQueue(T[] data, bool countNulls = false)
+        public CircleQueue(T[] data, bool countNulls = false, bool indexerIsReadOnly = true)
         {
             ((ICircleQueue<T>)this)._data = (T[])data.Clone();
             if (countNulls) { _count = data.Length; } // Assumes any null values are valid entries; O(1) time
@@ -67,6 +73,8 @@ namespace Collections.Generic.Circular
                     _bottomPos = (!Count.Equals(Size) ? Count : 0);  // We don't subtract 1 because entries start at index 1
                 }
             }
+
+            ((ICircleQueue<T>)this)._indexerIsReadOnly = indexerIsReadOnly;
         }
 
         public IEnumerator<T> GetEnumerator()
@@ -89,7 +97,8 @@ namespace Collections.Generic.Circular
             }
             set
             {
-                ((ICircleQueue<T>)this)._data[key] = value;
+                if (((ICircleQueue<T>)this)._indexerIsReadOnly) { throw new ReadOnlyException("Indexer is set to read-only."); }
+                else { ((ICircleQueue<T>)this)._data[key] = value; }
             }
         }
 

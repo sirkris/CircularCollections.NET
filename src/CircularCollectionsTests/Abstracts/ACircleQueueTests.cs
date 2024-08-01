@@ -3,6 +3,7 @@ using Collections.Generic.CircularTests.Interfaces;
 using Collections.Generic.CircularTests.Mocks;
 using Collections.Generic.CircularTests.Mocks.Interfaces;
 using System;
+using System.Data;
 using Xunit;
 
 namespace Collections.Generic.CircularTests.Abstracts
@@ -11,10 +12,10 @@ namespace Collections.Generic.CircularTests.Abstracts
     {
         public abstract ICircleQueueAndStackMocks Mocks { get; set; }
 
-        public abstract ICircleQueue<char> TestSetup(char[] mock);
+        public abstract ICircleQueue<char> TestSetup(char[] mock, bool indexerIsReadOnly = true);
 
         // This is necessary because covariant return types are not yet supported in C#
-        object ICircleContainerTests.TestSetup(object mock) => TestSetup((char[])mock);
+        object ICircleQueueTests.TestSetup(object mock, bool indexerIsReadOnly) => TestSetup((char[])mock, indexerIsReadOnly);
 
         [Fact]
         public void EnqueueShouldAddInitialElement()
@@ -147,6 +148,26 @@ namespace Collections.Generic.CircularTests.Abstracts
             {
                 Assert.Equal(circleQueue._data[i], circleQueue[i]);
             }
+        }
+
+        [Fact]
+        public void DataArrayShouldNotBeWritableViaIndexerIfReadOnly()
+        {
+            ICircleQueue<char> circleQueue = TestSetup((char[])Mocks.Data3EntriesWithSize3Mock, indexerIsReadOnly: true);
+
+            void act() => circleQueue[0] = ' ';
+
+            Assert.Equal("Indexer is set to read-only.",
+                Assert.Throws<ReadOnlyException>(act).Message);
+        }
+
+        [Fact]
+        public void DataArrayShouldBeWritableViaIndexerIfNotReadOnly()
+        {
+            ICircleQueue<char> circleQueue = TestSetup((char[])Mocks.Data3EntriesWithSize3Mock, indexerIsReadOnly: false);
+
+            circleQueue[0] = ' ';
+            Assert.Equal(' ', circleQueue[0]);
         }
     }
 }

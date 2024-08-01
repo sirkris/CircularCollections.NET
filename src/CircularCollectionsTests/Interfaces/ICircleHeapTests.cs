@@ -7,6 +7,8 @@ namespace Collections.Generic.CircularTests.Interfaces
 {
     public interface ICircleHeapTests : ICircleContainerTests
     {
+        public object TestSetup(object mock);
+
         public ICircleHeapMocks Mocks { get; set; }
 
         public void PushShouldAddInitialElement();

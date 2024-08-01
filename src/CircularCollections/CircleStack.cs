@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 
 namespace Collections.Generic.Circular
 {
     public class CircleStack<T> : ICircleStack<T>
     {
         T[] ICircleStack<T>._data { get; set; }
+        bool ICircleStack<T>._indexerIsReadOnly { get; set; }
         int ICircleContainer<T>.Pointer { get; set; }
 
         T ICircleContainer<T>.Top
@@ -43,17 +45,22 @@ namespace Collections.Generic.Circular
         }
         private int _count;
 
-        public CircleStack(int size) { ((ICircleStack<T>)this)._data = new T[size]; }
+        public CircleStack(int size, bool indexerIsReadOnly = true)
+        {
+            ((ICircleStack<T>)this)._data = new T[size];
+            ((ICircleStack<T>)this)._indexerIsReadOnly = indexerIsReadOnly;
+        }
 
-        public CircleStack(ICircleStack<T> container)
+        public CircleStack(ICircleStack<T> container, bool indexerIsReadOnly = true)
         {
             ((ICircleStack<T>)this)._data = (T[])container._data.Clone();
             _count = container.Count;
+            ((ICircleStack<T>)this)._indexerIsReadOnly = indexerIsReadOnly;
         }
 
         // It is not recommended that you use this constructor on inputs that are partially unfilled AND have valid null entries.
         // It will not be possible to obtain a valid count in that case since we don't know how to interpret the nulls.
-        public CircleStack(T[] data, bool countNulls = false)
+        public CircleStack(T[] data, bool countNulls = false, bool indexerIsReadOnly = true)
         {
             ((ICircleStack<T>)this)._data = (T[])data.Clone();
             if (countNulls) { _count = data.Length; } // Assumes any null values are valid entries; O(1) time
@@ -66,6 +73,8 @@ namespace Collections.Generic.Circular
                 if (!EqualityComparer<T>.Default.Equals(data[0], default)) { _count++; }
                 if (!Count.Equals(0)) { ((ICircleStack<T>)this).Pointer = (Count % Size); }
             }
+
+            ((ICircleStack<T>)this)._indexerIsReadOnly = indexerIsReadOnly;
         }
 
         public IEnumerator<T> GetEnumerator()
@@ -88,7 +97,8 @@ namespace Collections.Generic.Circular
             }
             set
             {
-                ((ICircleStack<T>)this)._data[key] = value;
+                if (((ICircleStack<T>)this)._indexerIsReadOnly) { throw new ReadOnlyException("Indexer is set to read-only."); }
+                else { ((ICircleStack<T>)this)._data[key] = value; }
             }
         }
 

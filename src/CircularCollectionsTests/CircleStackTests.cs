@@ -14,9 +14,9 @@ namespace Collections.Generic.CircularTests
 
         public CircleStackTests() { Mocks = new CircleStackMocks(); }
 
-        public override ICircleStack<char> TestSetup(char[] mock)
+        public override ICircleStack<char> TestSetup(char[] mock, bool indexerIsReadOnly = true)
         {
-            return new CircleStack<char>(mock);
+            return new CircleStack<char>(mock, indexerIsReadOnly: indexerIsReadOnly);
         }
     }
 }

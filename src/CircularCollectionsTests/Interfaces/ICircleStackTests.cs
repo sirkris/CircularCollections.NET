@@ -7,6 +7,8 @@ namespace Collections.Generic.CircularTests.Interfaces
 {
     public interface ICircleStackTests : ICircleContainerTests
     {
+        public object TestSetup(object mock, bool indexerIsReadOnly = true);
+
         public ICircleQueueAndStackMocks Mocks { get; set; }
 
         public void PushShouldAddInitialElement();
@@ -14,5 +16,6 @@ namespace Collections.Generic.CircularTests.Interfaces
         public void PushToFullShouldReplace();
         public void PopShouldRemoveLastIn();
         public void RotateShouldDecrementPointerPosition();
+        public void DataArrayShouldBeWritableViaIndexerIfNotReadOnly();
     }
 }
