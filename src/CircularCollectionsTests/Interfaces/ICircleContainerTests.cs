@@ -17,5 +17,6 @@ namespace Collections.Generic.CircularTests.Interfaces
         public void DataArrayShouldBeTraversibleInOrder();
         public void DataArrayShouldBeAccessibleViaIndexer();
         public void DataArrayShouldNotBeWritableViaIndexerIfReadOnly();
+        public void RotateShouldApplySpecifiedRotationFactor();
     }
 }

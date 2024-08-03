@@ -113,6 +113,21 @@ namespace Collections.Generic.CircularTests.Abstracts
         }
 
         [Fact]
+        public void RotateShouldApplySpecifiedRotationFactor()
+        {
+            ICircleHeap<char> circleHeap = TestSetup((IHeapEntry<char>[])Mocks.Data26EntriesWithSize26Mock);
+            Assert.Equal(1, circleHeap.Pointer);
+
+            circleHeap.Rotate(factor: 10);
+            Assert.Equal(11, circleHeap.Pointer);
+            circleHeap.Rotate(factor: -10);
+            Assert.Equal(1, circleHeap.Pointer);
+
+            circleHeap.Rotate(factor: 52);
+            Assert.Equal(1, circleHeap.Pointer);
+        }
+
+        [Fact]
         public void ResetShouldSetPointerToZero()
         {
             ICircleHeap<char> circleHeap = TestSetup((IHeapEntry<char>[])Mocks.Data26EntriesWithSize26Mock);

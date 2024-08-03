@@ -128,9 +128,13 @@ namespace Collections.Generic.Circular
             return res;
         }
 
-        public T Rotate()
+        public T Rotate(int factor = -1)
         {
-            if ((--((ICircleStack<T>)this).Pointer) < 0) { ((ICircleStack<T>)this).Pointer = ((ICircleStack<T>)this)._data.Length - 1; }
+            ((ICircleStack<T>)this).Pointer = (((ICircleStack<T>)this).Pointer + factor) % ((ICircleStack<T>)this)._data.Length;
+            while (((ICircleStack<T>)this).Pointer < 0)
+            {
+                ((ICircleStack<T>)this).Pointer = ((ICircleStack<T>)this)._data.Length + ((ICircleStack<T>)this).Pointer;
+            }
 
             return ((ICircleStack<T>)this).Peek();
         }

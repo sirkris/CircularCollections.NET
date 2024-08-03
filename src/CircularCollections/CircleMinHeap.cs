@@ -151,9 +151,13 @@ namespace Collections.Generic.Circular
             return res;
         }
 
-        public T Rotate()
+        public T Rotate(int factor = 1)
         {
-            ((ICircleHeap<T>)this).Pointer = (++((ICircleHeap<T>)this).Pointer) % ((ICircleHeap<T>)this)._data.Length;
+            ((ICircleHeap<T>)this).Pointer = (((ICircleHeap<T>)this).Pointer + factor) % ((ICircleHeap<T>)this)._data.Length;
+            while (((ICircleHeap<T>)this).Pointer < 0)
+            {
+                ((ICircleHeap<T>)this).Pointer = ((ICircleHeap<T>)this)._data.Length + ((ICircleHeap<T>)this).Pointer;
+            }
 
             return ((ICircleHeap<T>)this).Peek();
         }

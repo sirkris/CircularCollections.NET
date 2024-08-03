@@ -11,5 +11,6 @@ namespace Collections.Generic.Circular
 
         void Push(T node);
         T Pop();
+        new T Rotate(int factor = -1);
     }
 }

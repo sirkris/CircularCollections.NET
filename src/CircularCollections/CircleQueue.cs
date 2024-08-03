@@ -137,9 +137,13 @@ namespace Collections.Generic.Circular
             return res;
         }
 
-        public T Rotate()
+        public T Rotate(int factor = 1)
         {
-            ((ICircleQueue<T>)this).Pointer = (++((ICircleQueue<T>)this).Pointer) % ((ICircleQueue<T>)this)._data.Length;
+            ((ICircleQueue<T>)this).Pointer = (((ICircleQueue<T>)this).Pointer + factor) % ((ICircleQueue<T>)this)._data.Length;
+            while (((ICircleQueue<T>)this).Pointer < 0)
+            {
+                ((ICircleQueue<T>)this).Pointer = ((ICircleQueue<T>)this)._data.Length + ((ICircleQueue<T>)this).Pointer;
+            }
 
             return ((ICircleQueue<T>)this).Peek();
         }

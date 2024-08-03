@@ -14,7 +14,7 @@ namespace Collections.Generic.Circular
         public T Bottom { get; set; }
 
         T Peek();
-        T Rotate();
+        T Rotate(int factor = 1);
         bool Contains(T target);
 
         T this[int key] { get; set; }
