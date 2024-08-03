@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CircularCollections
+namespace Collections.Generic.Circular
 {
-    interface IHeapEntry<T>
+    public interface IHeapEntry<T>
     {
+        public int Index { get; set; }
+        public T Value { get; set; }
     }
 }
