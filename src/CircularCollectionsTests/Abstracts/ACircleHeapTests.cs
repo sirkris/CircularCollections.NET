@@ -123,9 +123,9 @@ namespace Collections.Generic.CircularTests.Abstracts
             circleHeap.Rotate(factor: -10);
             Assert.Equal(0, circleHeap.Pointer);
 
-            circleHeap.Rotate(factor: 52);
+            circleHeap.Rotate(factor: ((IHeapEntry<char>[])Mocks.Data26EntriesWithSize26Mock).Length * 2);
             Assert.Equal(0, circleHeap.Pointer);
-            circleHeap.Rotate(factor: -52);
+            circleHeap.Rotate(factor: ((IHeapEntry<char>[])Mocks.Data26EntriesWithSize26Mock).Length * -2);
             Assert.Equal(0, circleHeap.Pointer);
         }
 
