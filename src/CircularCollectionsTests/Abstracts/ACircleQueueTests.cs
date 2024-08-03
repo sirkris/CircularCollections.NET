@@ -72,6 +72,12 @@ namespace Collections.Generic.CircularTests.Abstracts
         public void RotateShouldApplySpecifiedRotationFactor()
         {
             ICircleQueue<char> circleQueue = TestSetup((char[])Mocks.Data26EntriesWithSize26Mock);
+
+            // Note - With a pre-filled CircleQueue, the pointer will always be at the initial insertion point, which is 1.
+            // This behavior differs from that of a circular stack, whose pointer will always be 0 when full.  This is because
+            // CircleStack's pointer rotates clockwise when Push is called, whereas CircleQueue's pointer only increments when
+            // calling Push on a CircleQueue that is already full.  It's also worth noting that CircleHeap maintains its pointer
+            // at 0 unless manually rotated.
             Assert.Equal(1, circleQueue.Pointer);
 
             circleQueue.Rotate(factor: 10);
@@ -80,6 +86,8 @@ namespace Collections.Generic.CircularTests.Abstracts
             Assert.Equal(1, circleQueue.Pointer);
 
             circleQueue.Rotate(factor: 52);
+            Assert.Equal(1, circleQueue.Pointer);
+            circleQueue.Rotate(factor: -52);
             Assert.Equal(1, circleQueue.Pointer);
         }
 

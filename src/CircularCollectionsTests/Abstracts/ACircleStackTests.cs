@@ -74,15 +74,17 @@ namespace Collections.Generic.CircularTests.Abstracts
         public void RotateShouldApplySpecifiedRotationFactor()
         {
             ICircleStack<char> circleStack = TestSetup((char[])Mocks.Data26EntriesWithSize26Mock);
-            Assert.Equal(1, circleStack.Pointer);
+            Assert.Equal(0, circleStack.Pointer);
 
             circleStack.Rotate(factor: 10);
-            Assert.Equal(11, circleStack.Pointer);
+            Assert.Equal(10, circleStack.Pointer);
             circleStack.Rotate(factor: -10);
-            Assert.Equal(1, circleStack.Pointer);
+            Assert.Equal(0, circleStack.Pointer);
 
             circleStack.Rotate(factor: 52);
-            Assert.Equal(1, circleStack.Pointer);
+            Assert.Equal(0, circleStack.Pointer);
+            circleStack.Rotate(factor: -52);
+            Assert.Equal(0, circleStack.Pointer);
         }
 
         [Fact]
