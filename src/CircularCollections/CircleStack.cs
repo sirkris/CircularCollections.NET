@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Collections.Generic.Circular.Exceptions;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
@@ -116,7 +117,7 @@ namespace Collections.Generic.Circular
 
         public T Pop()
         {
-            if (Count.Equals(0)) { throw new InvalidOperationException("Stack empty."); }
+            if (Count.Equals(0)) { throw new StackEmptyException("Stack empty."); }
 
             T res = ((ICircleStack<T>)this).Peek();
             ((ICircleStack<T>)this)._data[((ICircleStack<T>)this).Pointer] = default;

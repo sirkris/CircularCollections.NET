@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Collections.Generic.Circular.Exceptions;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
@@ -125,7 +126,7 @@ namespace Collections.Generic.Circular
 
         public T Dequeue()
         {
-            if (Count.Equals(0)) { throw new InvalidOperationException("Queue empty."); }
+            if (Count.Equals(0)) { throw new QueueEmptyException("Queue empty."); }
 
             T res = ((ICircleQueue<T>)this).Peek();
             ((ICircleQueue<T>)this)._data[((ICircleQueue<T>)this).Pointer] = default;
